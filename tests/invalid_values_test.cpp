@@ -36,16 +36,14 @@ TEST_F(InvalidValues, ion_alloc_fd) {
     EXPECT_EQ(-ENODEV, ion_alloc_fd(ionfd, 4096, 0, 0, 0, &fd));
     for (const auto& heap : ion_heaps) {
         // invalid ion_fd
-        int ret = ion_alloc_fd(0, 4096, 0, (1 << heap.heap_id), 0, &fd);
-        EXPECT_TRUE(ret == -EINVAL || ret == -ENOTTY);
-        // invalid ion_fd
         EXPECT_EQ(-EBADF, ion_alloc_fd(-1, 4096, 0, (1 << heap.heap_id), 0, &fd));
         SCOPED_TRACE(::testing::Message()
                      << "heap:" << heap.name << ":" << heap.type << ":" << heap.heap_id);
         // zero size
         EXPECT_EQ(-EINVAL, ion_alloc_fd(ionfd, 0, 0, (1 << heap.heap_id), 0, &fd));
         // too large size
-        EXPECT_EQ(-EINVAL, ion_alloc_fd(ionfd, -1, 0, (1 << heap.heap_id), 0, &fd));
+        int ret = ion_alloc_fd(ionfd, -1, 0, (1 << heap.heap_id), 0, &fd);
+        EXPECT_TRUE(ret == -EINVAL || ret == -ENOMEM);
         // bad alignment
         // TODO: Current userspace and kernel code completely ignores alignment. So this
         // test is going to fail. We need to completely remove alignment from the API.
