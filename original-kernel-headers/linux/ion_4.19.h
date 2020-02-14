@@ -31,12 +31,6 @@ enum ion_heap_type_ext {
  * ion_heap_id - list of standard heap ids that Android can use
  *
  * @ION_HEAP_SYSTEM		Id for the ION_HEAP_TYPE_SYSTEM
- * @ION_HEAP_SYSTEM_CONTIG	Id for the ION_HEAP_TYPE_SYSTEM_CONTIG
- * @ION_HEAP_CHUNK		Id for the ION_HEAP_TYPE_CHUNK
- * @ION_HEAP_CARVEOUT_START	Start of reserved id range for heaps of type
- *				ION_HEAP_TYPE_CARVEOUT
- * @ION_HEAP_CARVEOUT_END	End of reserved id range for heaps of type
- *				ION_HEAP_TYPE_CARVEOUT
  * @ION_HEAP_DMA_START 		Start of reserved id range for heaps of type
  *				ION_HEAP_TYPE_DMA
  * @ION_HEAP_DMA_END		End of reserved id range for heaps of type
@@ -48,14 +42,10 @@ enum ion_heap_type_ext {
  */
 enum ion_heap_id {
     ION_HEAP_SYSTEM = (1 << ION_HEAP_TYPE_SYSTEM),
-    ION_HEAP_SYSTEM_CONTIG = (ION_HEAP_SYSTEM << 1),
-    ION_HEAP_CARVEOUT_START = (ION_HEAP_SYSTEM_CONTIG << 1),
-    ION_HEAP_CARVEOUT_END = (ION_HEAP_CARVEOUT_START << 4),
-    ION_HEAP_CHUNK = (ION_HEAP_CARVEOUT_END << 1),
-    ION_HEAP_DMA_START = (ION_HEAP_CHUNK << 1),
+    ION_HEAP_DMA_START = (ION_HEAP_SYSTEM << 1),
     ION_HEAP_DMA_END = (ION_HEAP_DMA_START << 7),
     ION_HEAP_CUSTOM_START = (ION_HEAP_DMA_END << 1),
-    ION_HEAP_CUSTOM_END = (ION_HEAP_CUSTOM_START << 15),
+    ION_HEAP_CUSTOM_END = (ION_HEAP_CUSTOM_START << 22),
 };
 
 #define ION_NUM_MAX_HEAPS (32)

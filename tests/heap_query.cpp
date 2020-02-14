@@ -34,12 +34,6 @@ TEST_F(HeapQuery, HeapIdVerify) {
             case ION_HEAP_TYPE_SYSTEM:
                 ASSERT_TRUE((1 << heap.heap_id) & ION_HEAP_SYSTEM_MASK);
                 break;
-            case ION_HEAP_TYPE_SYSTEM_CONTIG:
-                ASSERT_TRUE((1 << heap.heap_id) & ION_HEAP_SYSTEM_CONTIG_MASK);
-                break;
-            case ION_HEAP_TYPE_CARVEOUT:
-                ASSERT_TRUE((1 << heap.heap_id) & ION_HEAP_CARVEOUT_MASK);
-                break;
             case ION_HEAP_TYPE_DMA:
                 ASSERT_TRUE((1 << heap.heap_id) & ION_HEAP_TYPE_DMA_MASK);
                 break;
