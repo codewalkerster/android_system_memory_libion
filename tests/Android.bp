@@ -31,7 +31,7 @@ cc_test {
         "map_test.cpp",
         "modular_heap_check.cpp",
     ],
-    test_suites: ["vts-core"],
+    test_suites: ["vts"],
     auto_gen_config: true,
     test_min_api_level: 30,
 }
