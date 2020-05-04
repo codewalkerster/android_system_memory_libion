@@ -17,6 +17,7 @@ cc_library {
         "kernel-headers",
     ],
     cflags: ["-Werror"],
+    min_sdk_version: "29",
 }
 
 cc_binary {
