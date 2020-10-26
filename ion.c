@@ -75,7 +75,14 @@ int ion_close(int fd) {
 static int ion_ioctl(int fd, int req, void* arg) {
     int ret = ioctl(fd, req, arg);
     if (ret < 0) {
-        ALOGE("ioctl %x failed with code %d: %s", req, ret, strerror(errno));
+        if ( ION_IOC_FREE == req )
+        {
+            ALOGW("ION_IOC_FREE failed with code %d: %s; might be caused by that current kernel is NEW.", ret, strerror(errno));
+        }
+        else
+        {
+            ALOGE("ioctl %x failed with code %d: %s", req, ret, strerror(errno));
+        }
         return -errno;
     }
     return ret;
